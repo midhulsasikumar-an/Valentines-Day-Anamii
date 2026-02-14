@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Propose Day</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="page propose-section">
+    <div class="propose-petals" aria-hidden="true">
+      <span class="cherry-petal"></span>
+      <span class="cherry-petal"></span>
+      <span class="cherry-petal"></span>
+      <span class="cherry-petal"></span>
+      <span class="cherry-petal"></span>
+      <span class="cherry-petal"></span>
+      <span class="cherry-petal"></span>
+      <span class="cherry-petal"></span>
+      <span class="cherry-petal"></span>
+      <span class="cherry-petal"></span>
+    </div>
+    <main class="page-main propose-main">
+      <div class="propose-container">
+        <div class="propose-text">
+          <h1>💍 Propose Day</h1>
+          <p class="subtitle">There’s something I’ve been meaning to tell you Anamii…</p>
+          <p class="propose-copy">
+            You know…
+
+            Every time the world feels too loud,
+            somehow, you’re the quiet I look for.
+
+            I don’t really know when it started —
+            maybe on the day we met,
+            or the way you smiled at something small.
+
+            But somewhere along the way,
+            you became the person
+            I want to tell everything to.
+
+            If I had to choose a place to stay forever…
+            I think it would be
+            right beside you.
+
+            So…
+
+            If you don’t mind…
+            could I stay there?
+
+            Not just for today.
+            Not just for this moment.
+
+            But for all the moments that are yet to come.
+          </p>
+          <div class="propose-action">
+            <button id="proposeYesBtn" class="btn propose-yes-btn" type="button">Say Yes 💍</button>
+            <p id="proposalResponse" class="response propose-response">You already had my heart.</p>
+          </div>
+        </div>
+
+        <div class="propose-visual" aria-hidden="true">
+          <div class="visual-glow"></div>
+          <div class="visual-glass">
+            <div class="ring-container">
+              <div class="ring"></div>
+              <div class="diamond"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="controls propose-controls">
+        <button class="btn btn-secondary" onclick="goToPrev()">Back</button>
+        <button class="btn btn-primary" onclick="goToNext()">Next Day</button>
+      </div>
+    </main>
+    <footer class="footer">
+      <span>Day 2 of Valentine Week</span>
+      <span class="hidden-heart" onclick="openSecretPage()" title="Secret">🖤</span>
+    </footer>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>

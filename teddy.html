@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teddy Day</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="page teddy-section">
+    <div class="teddy-overlay"></div>
+    <main class="page-main teddy-main">
+      <div class="teddy-container">
+        <div class="teddy-text">
+          <h1>🧸 Teddy Day</h1>
+          <p class="subtitle">Because love should feel safe.</p>
+          <p class="teddy-copy">
+Whenever the world feels too loud…
+Whenever your brain won’t stop overthinking…
+Whenever you pretend you’re “fine” but I know you’re not…
+
+I wish I could just teleport there.
+Not in a superhero way.
+Just in a “sit next to you and annoy you until you smile” way.
+
+If you’re holding that teddy…
+Just imagine it’s me.
+Yes.Me.
+Except less fluffy.And slightly more handsome.
+And definitely more obsessed with you.
+
+You don’t always have to be strong.You don’t always have to handle everything alone.
+
+If I could,I’d sit next to you
+on your worst days.
+Not to fix everything.
+Because honestly,I probably can’t.
+
+But I can stay.
+I can listen.I can hold your hand.
+And if life ever feels cold…
+I hope I’m the idiot you come to for warmth.
+          </p>
+        </div>
+        <div class="teddy-visual">
+          <img src="assets/teddy-large.png" alt="Teddy Bear" class="teddy-bear">
+        </div>
+        <div class="controls teddy-controls">
+          <button class="btn btn-secondary" onclick="goToPrev()">Back</button>
+          <button class="btn btn-primary" onclick="goToNext()">Next Day</button>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <span>Day 4 of Valentine Week</span>
+      <span class="hidden-heart" onclick="openSecretPage()" title="Secret">🖤</span>
+    </footer>
+  </section>
+  <script src="script.js"></script>
+  <script>
+    const teddy = document.querySelector(".teddy-bear");
+    if (teddy) {
+      teddy.addEventListener("click", () => {
+        teddy.classList.remove("shake");
+        void teddy.offsetWidth;
+        teddy.classList.add("shake");
+      });
+
+      teddy.addEventListener("animationend", (event) => {
+        if (event.animationName === "teddyShake") {
+          teddy.classList.remove("shake");
+        }
+      });
+    }
+  </script>
+</body>
+</html>

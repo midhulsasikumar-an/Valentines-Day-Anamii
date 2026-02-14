@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promise Day</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="page promise-section">
+    <div class="promise-overlay"></div>
+    <div class="promise-particles" aria-hidden="true">
+      <span class="promise-dust"></span>
+      <span class="promise-dust"></span>
+      <span class="promise-dust"></span>
+      <span class="promise-dust"></span>
+      <span class="promise-dust"></span>
+      <span class="promise-dust"></span>
+    </div>
+    <main class="page-main promise-main">
+      <div class="promise-container">
+        <h1 class="promise-title">Promise Day</h1>
+        <p class="promise-skytext">
+I CAN'T PROMISE TO LOVE YOU PERFECTLY…
+BUT I CAN PROMISE TO LOVE YOU ENDLESSLY.
+
+I HAVE LOVED YOU THROUGH EVERY VERSION OF US,
+AND EVERY LIFE WE NEVER LIVED.
+
+EVEN THE STARS BURN UNTIL NOTHING REMAINS…
+BUT I WILL LOVE YOU ENDLESSLY.
+
+BUT I CAN PROMISE I'LL BE THAT BOY WHO YOU CAN ALWAYS 
+TALK TO, THE BOY WHO YOU CAN TRUST AND I'LL 
+ALWAYS BE THE BOY WHO WILL STAND BY YOUR SIDE AND
+LOVE YOU NO MATTER WHAT HAPPENS.
+        </p>
+        <div class="promise-accept" id="promiseAcceptArea">
+          <p class="promise-divider">— SO TELL ME —</p>
+          <p class="promise-question">
+WILL YOU ACCEPT
+ALL MY IMPERFECT PROMISES?
+          </p>
+          <div class="promise-accept-wrap">
+            <button class="promise-accept-btn" id="promiseAcceptBtn" type="button">Yes… I Accept You — Imperfect & Forever.</button>
+            <div class="promise-sparkles" aria-hidden="true">
+              <span class="promise-spark"></span>
+              <span class="promise-spark"></span>
+              <span class="promise-spark"></span>
+              <span class="promise-spark"></span>
+              <span class="promise-spark"></span>
+            </div>
+          </div>
+          <div class="promise-nav-links">
+            <a href="#" id="promiseBackLink">← Go Back</a>
+            <a href="#" id="promiseNextLink">Continue →</a>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <span>Day 5 of Valentine Week</span>
+      <span class="hidden-heart" onclick="openSecretPage()" title="Secret">🖤</span>
+    </footer>
+  </section>
+  <script src="script.js"></script>
+  <script>
+    const promiseSection = document.querySelector(".promise-section");
+    const acceptBtn = document.getElementById("promiseAcceptBtn");
+    const backLink = document.getElementById("promiseBackLink");
+    const nextLink = document.getElementById("promiseNextLink");
+
+    if (backLink) {
+      backLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        goToPrev();
+      });
+    }
+
+    if (nextLink) {
+      nextLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        goToNext();
+      });
+    }
+
+    function spawnButtonSparkBurst() {
+      const burst = document.createElement("div");
+      burst.className = "promise-click-burst";
+      promiseSection.appendChild(burst);
+      for (let i = 0; i < 12; i += 1) {
+        const sparkle = document.createElement("span");
+        sparkle.className = "promise-click-spark";
+        sparkle.style.left = `${44 + Math.random() * 12}%`;
+        sparkle.style.top = `${70 + Math.random() * 10}%`;
+        sparkle.style.setProperty("--x", `${-120 + Math.random() * 240}px`);
+        sparkle.style.setProperty("--y", `${-100 + Math.random() * 130}px`);
+        sparkle.style.animationDelay = `${Math.random() * 0.15}s`;
+        burst.appendChild(sparkle);
+      }
+      setTimeout(() => burst.remove(), 1500);
+    }
+
+    function spawnSkyShimmer() {
+      const shimmer = document.createElement("div");
+      shimmer.className = "promise-sky-shimmer";
+      promiseSection.appendChild(shimmer);
+      for (let i = 0; i < 18; i += 1) {
+        const star = document.createElement("span");
+        star.className = "promise-shimmer-star";
+        star.style.left = `${30 + Math.random() * 40}%`;
+        star.style.top = `${48 + Math.random() * 40}%`;
+        star.style.animationDelay = `${Math.random() * 0.2}s`;
+        shimmer.appendChild(star);
+      }
+      setTimeout(() => shimmer.remove(), 2500);
+    }
+
+    function shootStarAndContinue() {
+      const shootingStar = document.createElement("div");
+      shootingStar.className = "promise-shooting-star";
+      promiseSection.appendChild(shootingStar);
+
+      promiseSection.classList.add("universe-response");
+      spawnButtonSparkBurst();
+      spawnSkyShimmer();
+
+      setTimeout(() => {
+        promiseSection.classList.remove("universe-response");
+      }, 2300);
+
+      setTimeout(() => {
+        shootingStar.remove();
+      }, 1700);
+
+      setTimeout(() => {
+        goToNext();
+      }, 2100);
+    }
+
+    if (promiseSection && acceptBtn) {
+      acceptBtn.addEventListener("click", () => {
+        if (acceptBtn.disabled) {
+          return;
+        }
+        acceptBtn.disabled = true;
+        acceptBtn.classList.add("accepted");
+        acceptBtn.textContent = "You just made my universe brighter.";
+        shootStarAndContinue();
+      });
+    }
+  </script>
+</body>
+</html>

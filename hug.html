@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hug Day</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="page hug-section">
+    <div class="hug-overlay"></div>
+    <div class="hug-particles" aria-hidden="true">
+      <span class="hug-dust"></span>
+      <span class="hug-dust"></span>
+      <span class="hug-dust"></span>
+      <span class="hug-dust"></span>
+      <span class="hug-dust"></span>
+      <span class="hug-dust"></span>
+    </div>
+
+    <main class="page-main hug-main">
+      <div class="hug-container">
+        <h1 class="hug-title">Hug Day</h1>
+        <p class="hug-skytext">
+You remember
+our first hug?
+
+I don’t think you ever knew
+what it did to me.
+
+I DIDN’T FEEL LIKE.I DESERVED THAT MOMENT.
+BUT YOU HELD ME
+ANYWAY.
+
+For a few seconds…
+the world went quiet.
+
+No distance.
+No noise.
+No fear.
+
+Just you and me.
+
+I CAN’T EXPLAIN, WHAT THAT HUG DID TO MY HEART.
+BUT IT FIXED SOMETHING
+I DIDN’T EVEN KNOW WAS BROKEN.
+
+And every time we said,
+“I wish I could just hug you right now…”
+I remembered that feeling.
+
+THAT WARMTH.
+THAT SAFETY.
+THAT PEACE.
+
+If I could relive one moment forever…
+it would be that first hug.
+        </p>
+
+        <div class="hug-accept" id="hugAcceptArea">
+          <p class="hug-divider">— SO TELL ME —</p>
+          <p class="hug-question">
+WILL YOU HUG ME
+FOREVER?
+          </p>
+
+          <div class="hug-accept-wrap">
+            <button class="hug-accept-btn" id="hugAcceptBtn" type="button">Yes… come here 🤍</button>
+          </div>
+
+          <div class="hug-nav-links">
+            <a href="#" id="hugBackLink">← Go Back</a>
+            <a href="#" id="hugNextLink">Continue →</a>
+          </div>
+        </div>
+      </div>
+
+      <p class="hug-safe-text" id="hugSafeText">You are my safest place.</p>
+      <div class="hug-warmth-particles" id="hugWarmthParticles" aria-hidden="true"></div>
+    </main>
+
+    <footer class="footer">
+      <span>Day 6 of Valentine Week</span>
+      <span class="hidden-heart" onclick="openSecretPage()" title="Secret">🖤</span>
+    </footer>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    const hugSection = document.querySelector(".hug-section");
+    const hugAcceptBtn = document.getElementById("hugAcceptBtn");
+    const hugSafeText = document.getElementById("hugSafeText");
+    const warmthLayer = document.getElementById("hugWarmthParticles");
+    const hugBackLink = document.getElementById("hugBackLink");
+    const hugNextLink = document.getElementById("hugNextLink");
+
+    if (hugBackLink) {
+      hugBackLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        goToPrev();
+      });
+    }
+
+    if (hugNextLink) {
+      hugNextLink.addEventListener("click", (event) => {
+        event.preventDefault();
+        goToNext();
+      });
+    }
+
+    function spawnWarmthParticles() {
+      if (!warmthLayer) return;
+      warmthLayer.innerHTML = "";
+      for (let i = 0; i < 18; i += 1) {
+        const p = document.createElement("span");
+        p.className = "hug-warmth-particle";
+        p.style.left = `${26 + Math.random() * 48}%`;
+        p.style.bottom = `${8 + Math.random() * 18}%`;
+        p.style.animationDelay = `${Math.random() * 0.25}s`;
+        p.style.setProperty("--rise-x", `${-40 + Math.random() * 80}px`);
+        warmthLayer.appendChild(p);
+      }
+    }
+
+    if (hugSection && hugAcceptBtn) {
+      hugAcceptBtn.addEventListener("click", () => {
+        if (hugAcceptBtn.disabled) return;
+        hugAcceptBtn.disabled = true;
+        hugAcceptBtn.classList.add("accepted");
+        hugAcceptBtn.textContent = "You just made this night warmer.";
+
+        spawnWarmthParticles();
+        hugSection.classList.add("hug-accepted");
+
+        setTimeout(() => {
+          if (hugSafeText) hugSafeText.classList.add("show");
+        }, 1200);
+
+        setTimeout(() => {
+          goToNext();
+        }, 2800);
+      });
+    }
+  </script>
+</body>
+</html>

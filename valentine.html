@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Valentine's Day</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="page valentine-section">
+    <div class="valentine-overlay"></div>
+    <div class="valentine-particles" aria-hidden="true">
+      <span class="valentine-dust"></span>
+      <span class="valentine-dust"></span>
+      <span class="valentine-dust"></span>
+      <span class="valentine-dust"></span>
+      <span class="valentine-dust"></span>
+      <span class="valentine-dust"></span>
+    </div>
+
+    <main class="page-main valentine-main">
+      <div class="valentine-container" id="valentineContainer">
+        <h1 class="valentine-title">Valentine's Day</h1>
+        <p class="valentine-subtitle">The day has a name, but the feeling is you.</p>
+
+        <p class="valentine-paragraph">
+Under this sky, with your forehead touching mine, everything feels quiet. It feels like the world stopped just to witness this moment. I don’t know if I will ever be a perfect partner or perfectly fit your coolness code, but standing here with you makes me want to try every single day. You are not just someone I love — you are the person who made me understand what love truly feels like.
+        </p>
+
+        <p class="valentine-paragraph">
+From the first day we met, when I randomly said “Hey, I love you,” I didn’t realize how real those words would become. The first time I saw you, I couldn’t take my eyes off you. I remember thinking how something so beautiful could exist in this world. In that moment, I understood what the word beautiful truly meant, because nothing else could describe you. You didn’t just enter my life — you changed it.
+        </p>
+
+        <p class="valentine-paragraph">
+You were the first person who made me feel like I was worth being loved, and I will never forget that. I didn’t need a reason to love you, and that’s how I knew it was real. Real love doesn’t ask for explanations — it simply grows quietly and deeply. Every memory we created — the first time we held hands, the first time we enjoyed everything together, all the gifts you gave me, all the emotional support you showed me, every time you laughed with me — they are precious pieces of my heart now.
+        </p>
+
+        <p class="valentine-paragraph">
+I cannot replace you. I don’t want to. I’ve adapted to living with you in my life, and I can’t even stop thinking about you for a single day. Even when we fight or don’t speak, I still wonder if you’re okay. Because loving you doesn’t pause. It doesn’t take breaks.
+        </p>
+
+        <p class="valentine-paragraph">
+You are adorable in ways you don’t even realize. Sometimes you are so pretty that I question if I deserve you. But I know one thing — I want to be the man in your life who makes you say, “My life has been better since I met him.” I deeply appreciate every little thing you do for me. You make me feel loved. You make me feel accepted. And that means more than I can ever explain.
+        </p>
+
+        <p class="valentine-paragraph valentine-last">So today, on Valentine’s Day, I just want to ask you one thing…</p>
+
+        <div class="valentine-divider" aria-hidden="true"></div>
+        <p class="valentine-question">Will you stay with me, not just in the beautiful moments, but in the ordinary ones too?</p>
+
+        <div class="valentine-action" id="valentineActionArea">
+          <button class="valentine-btn" id="valentineAcceptBtn" type="button">Yes… I’m yours forever 💫</button>
+        </div>
+
+        <p class="valentine-final-message" id="valentineFinalMessage">Thank you for choosing me.</p>
+        <p class="valentine-closing" id="valentineClosing">Happy Valentine’s Day, My Love ❤️</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <span>Day 7 of Valentine Week</span>
+      <span class="hidden-heart" onclick="openSecretPage()" title="Secret">🖤</span>
+    </footer>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    const valentineSection = document.querySelector(".valentine-section");
+    const valentineAcceptBtn = document.getElementById("valentineAcceptBtn");
+    const valentineFinalMessage = document.getElementById("valentineFinalMessage");
+    const valentineClosing = document.getElementById("valentineClosing");
+
+    function spawnValentineWarmParticles() {
+      const layer = document.createElement("div");
+      layer.className = "valentine-warmth-layer";
+      for (let i = 0; i < 26; i += 1) {
+        const p = document.createElement("span");
+        p.className = "valentine-warmth-particle";
+        p.style.left = `${20 + Math.random() * 60}%`;
+        p.style.bottom = `${8 + Math.random() * 15}%`;
+        p.style.animationDelay = `${Math.random() * 0.25}s`;
+        p.style.setProperty("--rise-x", `${-50 + Math.random() * 100}px`);
+        layer.appendChild(p);
+      }
+      valentineSection.appendChild(layer);
+      setTimeout(() => layer.remove(), 3600);
+    }
+
+    if (valentineSection && valentineAcceptBtn) {
+      valentineAcceptBtn.addEventListener("click", () => {
+        if (valentineAcceptBtn.disabled) return;
+
+        valentineAcceptBtn.disabled = true;
+        valentineSection.classList.add("valentine-accepted");
+        spawnValentineWarmParticles();
+
+        setTimeout(() => {
+          if (valentineFinalMessage) valentineFinalMessage.classList.add("show");
+        }, 900);
+
+        setTimeout(() => {
+          if (valentineFinalMessage) valentineFinalMessage.classList.remove("show");
+          if (valentineClosing) valentineClosing.classList.add("show");
+        }, 3000);
+      });
+    }
+  </script>
+</body>
+</html>

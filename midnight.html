@@ -1,0 +1,203 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Midnight Thoughts</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="midnight">
+  <section class="page midnight-page">
+    <div class="midnight-bg"></div>
+    <div class="midnight-soft-particles" aria-hidden="true">
+      <span class="m-particle"></span><span class="m-particle"></span><span class="m-particle"></span>
+      <span class="m-particle"></span><span class="m-particle"></span><span class="m-particle"></span>
+      <span class="m-particle"></span><span class="m-particle"></span>
+    </div>
+
+    <main class="page-main midnight-main">
+      <section class="midnight-hero" id="midnightHero">
+        <h1>Midnight Thoughts About You 🌙</h1>
+        <p class="subtitle">When the world sleeps… my heart only thinks about you.</p>
+        <div class="controls">
+          <button class="btn btn-primary" id="comeCloserBtn">Come Closer 🤍</button>
+        </div>
+      </section>
+
+      <section class="midnight-block midnight-block-glass reveal" id="sectionOne">
+        <h2>How You Feel To Me</h2>
+        <p id="typingText" class="midnight-typed"></p>
+      </section>
+
+      <section class="midnight-block midnight-block-focus reveal" id="sectionTwo">
+        <h2>The Kiss Moment</h2>
+        <p>
+The first time our lips touched, everything went quiet.
+No noise. No world. Just us.
+It wasn’t loud or dramatic… it was soft.
+But it felt like electricity running through me.
+When our bodies came closer, when we just stayed there in silence…
+I realized I never wanted that moment to end.
+        </p>
+      </section>
+
+      <section class="midnight-block midnight-block-stars reveal" id="sectionThree">
+        <h2>Midnight Talks</h2>
+        <p class="line-wrap" id="lineWrap">
+          <span class="line">All those late night talks…</span>
+          <span class="line">The ones where we whispered things we never told anyone else.</span>
+          <span class="line">The nights where sleep didn’t matter, but your voice did.</span>
+          <span class="line">The way you say my name softly when you’re tired…</span>
+          <span class="line">I replay those moments in my head when everything feels heavy.</span>
+          <span class="line">You became my comfort… even from miles away.</span>
+        </p>
+      </section>
+
+      <section class="midnight-block midnight-block-final reveal" id="sectionFour">
+        <h2>You Changed My Life</h2>
+        <p>
+You don’t even know how much power you have over me.
+The way you look at me…
+The way you smile after a kiss…
+The way your presence alone changes my world.
+
+You didn’t just enter my life.
+You changed it.
+        </p>
+
+        <div class="midnight-modal-trigger">
+          <button class="btn btn-primary" id="openForeverModalBtn">Will you stay this close to me… forever? 🤍</button>
+        </div>
+      </section>
+
+      <div class="controls midnight-end-controls">
+        <button class="btn btn-secondary" onclick="navigateTo('valentine.html')">Back to Valentine</button>
+      </div>
+    </main>
+
+    <div class="midnight-message" id="midnightMessage">You are my midnight peace and my morning happiness.</div>
+    <div class="midnight-center-heart" id="midnightCenterHeart">❤</div>
+    <div class="midnight-confetti" id="midnightConfetti" aria-hidden="true"></div>
+
+    <div class="midnight-modal" id="foreverModal" aria-hidden="true">
+      <div class="midnight-modal-card">
+        <h3>Will you stay this close to me… forever? 🤍</h3>
+        <div class="midnight-modal-actions">
+          <button class="btn btn-primary" id="modalYesBtn">YES 🌙</button>
+          <button class="btn btn-secondary" id="modalAlwaysBtn">ALWAYS 💖</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <span>Secret chapter unlocked</span>
+    </footer>
+  </section>
+
+  <script src="script.js"></script>
+  <script>
+    const comeCloserBtn = document.getElementById("comeCloserBtn");
+    const sectionOne = document.getElementById("sectionOne");
+    const typingText = document.getElementById("typingText");
+    const lineWrap = document.getElementById("lineWrap");
+    const revealBlocks = document.querySelectorAll(".reveal");
+    const modal = document.getElementById("foreverModal");
+    const openModalBtn = document.getElementById("openForeverModalBtn");
+    const modalYesBtn = document.getElementById("modalYesBtn");
+    const modalAlwaysBtn = document.getElementById("modalAlwaysBtn");
+    const confetti = document.getElementById("midnightConfetti");
+    const centerHeart = document.getElementById("midnightCenterHeart");
+    const message = document.getElementById("midnightMessage");
+    const page = document.querySelector(".midnight-page");
+
+    if (comeCloserBtn && sectionOne) {
+      comeCloserBtn.addEventListener("click", () => {
+        sectionOne.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    }
+
+    const typingCopy = "Every single day you look more beautiful than the last.\nSometimes you just walk in, and my heart literally forgets how to beat properly.\nYou startle me in the softest way.\nJust the thought of you brings butterflies into my stomach.\nAnd I don’t even try to stop it anymore… I love feeling that way because of you.";
+    let typed = false;
+
+    function runTyping() {
+      if (!typingText || typed) return;
+      typed = true;
+      let i = 0;
+      typingText.textContent = "";
+      const timer = setInterval(() => {
+        typingText.textContent += typingCopy[i];
+        i += 1;
+        if (i >= typingCopy.length) {
+          clearInterval(timer);
+          typingText.classList.add("typed-done");
+        }
+      }, 16);
+    }
+
+    function runLineReveal() {
+      if (!lineWrap || lineWrap.dataset.shown === "1") return;
+      lineWrap.dataset.shown = "1";
+      const lines = lineWrap.querySelectorAll(".line");
+      lines.forEach((line, idx) => {
+        setTimeout(() => line.classList.add("show"), idx * 260);
+      });
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          if (entry.target.id === "sectionOne") runTyping();
+          if (entry.target.id === "sectionThree") runLineReveal();
+        }
+      });
+    }, { threshold: 0.24 });
+
+    revealBlocks.forEach((block) => observer.observe(block));
+
+    function launchMidnightAcceptance() {
+      if (!confetti || !centerHeart || !message || !page) return;
+
+      confetti.innerHTML = "";
+      for (let i = 0; i < 28; i += 1) {
+        const heart = document.createElement("span");
+        heart.className = "midnight-confetti-heart";
+        heart.textContent = "❤";
+        heart.style.left = `${20 + Math.random() * 60}%`;
+        heart.style.top = `${30 + Math.random() * 40}%`;
+        heart.style.setProperty("--x", `${-120 + Math.random() * 240}px`);
+        heart.style.setProperty("--y", `${-130 + Math.random() * 200}px`);
+        heart.style.animationDelay = `${Math.random() * 0.2}s`;
+        confetti.appendChild(heart);
+      }
+
+      page.classList.add("midnight-accepted");
+      centerHeart.classList.add("show");
+      message.classList.add("show");
+
+      setTimeout(() => {
+        centerHeart.classList.remove("show");
+      }, 1900);
+
+      setTimeout(() => {
+        message.classList.remove("show");
+        confetti.innerHTML = "";
+      }, 2800);
+    }
+
+    if (openModalBtn && modal) {
+      openModalBtn.addEventListener("click", () => {
+        modal.classList.add("show");
+      });
+    }
+
+    [modalYesBtn, modalAlwaysBtn].forEach((btn) => {
+      if (!btn || !modal) return;
+      btn.addEventListener("click", () => {
+        modal.classList.remove("show");
+        launchMidnightAcceptance();
+      });
+    });
+  </script>
+</body>
+</html>

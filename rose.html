@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rose Day</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="page rose-page">
+    <main class="page-main rose-main">
+      <div class="rose-layout">
+        <div class="rose-copy">
+          <h1>🌹 Rose Day</h1>
+          <p class="subtitle">A bloom for every time you crossed my mind.</p>
+          <p class="rose-paragraph">
+            If I could, I would bring you every flower in this world.<br>
+            Not because you need them,<br>
+            but because you deserve to be surrounded by beauty —<br>
+            just the way you surround my life with it.<br><br>
+            And even then, none of them would compare to you.
+          </p>
+          <div class="controls rose-controls">
+            <button class="btn btn-primary rose-next-btn" onclick="goToNext()">Next Day →</button>
+          </div>
+        </div>
+
+        <div class="rose-art-scene" id="roseIllustration">
+          <div class="rose-glow"></div>
+          <img src="assets/rose-bouquet.png" alt="Realistic 3D red rose bouquet" class="rose-bouquet-image">
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <span>Day 1 of Valentine Week</span>
+      <span class="hidden-heart" onclick="openSecretPage()" title="Secret">🖤</span>
+    </footer>
+  </section>
+  <script src="script.js"></script>
+</body>
+</html>
